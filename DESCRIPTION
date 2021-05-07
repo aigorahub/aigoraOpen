@@ -1,16 +1,32 @@
 Package: aigoraOpen
-Title: What the Package Does (One Line, Title Case)
+Title: Model Wrappers and Preprocessing Steps
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Jakub",
+           family = "Kwiecien",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "jakub.kwiecien@aigora.com")
+Description: Bindings for additional models for use
+    with the 'parsnip' package and additional steps for package 'recipes'.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    recipes,
+    earth,
+    dplyr,
+    rlang,
+    tibble,
+    magrittr,
+    tune,
+    glmnetcr,
+    glmnet,
+    glue
+Suggests: 
+    testthat (>= 3.0.0),
+    modeldata
+Config/testthat/edition: 3
+Depends: 
+    parsnip
