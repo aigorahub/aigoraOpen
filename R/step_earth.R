@@ -48,6 +48,9 @@ step_earth <- function(recipe,
                        skip = FALSE,
                        id = recipes::rand_id("earth")) {
 
+
+  recipes::recipes_pkg_check(required_pkgs.step_earth())
+
   # ADD RANGE HANDLING TO num_terms AND prune_terms
 
   # if (!is_tune(threshold) & !is_varying(threshold)) {
@@ -170,6 +173,20 @@ print.step_earth <-
     }
     invisible(x)
   }
+
+
+
+#' S3 methods for tracking which additional packages are needed for steps.
+#'
+#' @param x A recipe step
+#' @param ... Additional arguments
+#'
+#' @return A character vector
+#'
+#' @export
+required_pkgs.step_earth <- function(x, ...) {
+  c("earth")
+}
 
 #' pca_coefs <- function(x) {
 #'   rot <- as.data.frame(x$res$rotation)
