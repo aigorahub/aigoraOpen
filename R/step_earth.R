@@ -106,6 +106,8 @@ step_earth_new <-
 
 #' @export
 prep.step_earth <- function(x, training, info = NULL, ...) {
+  load_pkgs(required_pkgs.step_earth())
+
   x_names <- recipes::terms_select(x$terms,   info = info)
   y_names <- recipes::terms_select(x$outcome, info = info)
   recipes::check_type(training[, x_names])
@@ -138,6 +140,7 @@ prep.step_earth <- function(x, training, info = NULL, ...) {
 #' @export
 bake.step_earth <- function(object, new_data, ...) {
   if (!is.null(object$res$cuts)) {
+    load_pkgs(required_pkgs.step_earth())
 
     which.terms <- c(1, grep('^h\\(', rownames(object$res$cuts)))
 

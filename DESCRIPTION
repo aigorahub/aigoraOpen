@@ -23,7 +23,8 @@ Imports:
     tune,
     glmnetcr,
     glmnet,
-    glue
+    glue,
+    purrr
 Suggests: 
     testthat (>= 3.0.0),
     modeldata
