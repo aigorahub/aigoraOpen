@@ -88,37 +88,30 @@ update.ordinal_reg <-
            penalty = NULL, mixture = NULL,
            fresh = FALSE, ...) {
 
+    eng_args <- parsnip::update_engine_parameters(object$eng_args, ...)
 
-    object <- parsnip:::update.multinom_reg(object,
-                                            parameters = parameters,
-                                            penalty = !! penalty,
-                                            mixture = !! mixture,
-                                            fresh = fresh,
-                                            ...)
-    # eng_args <- parsnip::update_engine_parameters(object$eng_args, ...)
-    #
-    # if (!is.null(parameters)) {
-    #   parameters <- parsnip::check_final_param(parameters)
-    # }
-    # args <- list(
-    #   penalty = rlang::enquo(penalty),
-    #   mixture = rlang::enquo(mixture)
-    # )
-    #
-    # args <- parsnip::update_main_parameters(args, parameters)
-    #
-    # if (fresh) {
-    #   object$args <- args
-    #   object$eng_args <- eng_args
-    # } else {
-    #   null_args <- purrr::map_lgl(args, parsnip::null_value)
-    #   if (any(null_args))
-    #     args <- args[!null_args]
-    #   if (length(args) > 0)
-    #     object$args[names(args)] <- args
-    #   if (length(eng_args) > 0)
-    #     object$eng_args[names(eng_args)] <- eng_args
-    # }
+    if (!is.null(parameters)) {
+      parameters <- parsnip::check_final_param(parameters)
+    }
+    args <- list(
+      penalty = rlang::enquo(penalty),
+      mixture = rlang::enquo(mixture)
+    )
+
+    args <- parsnip::update_main_parameters(args, parameters)
+
+    if (fresh) {
+      object$args <- args
+      object$eng_args <- eng_args
+    } else {
+      null_args <- purrr::map_lgl(args, parsnip::null_value)
+      if (any(null_args))
+        args <- args[!null_args]
+      if (length(args) > 0)
+        object$args[names(args)] <- args
+      if (length(eng_args) > 0)
+        object$eng_args[names(eng_args)] <- eng_args
+    }
 
     parsnip::new_model_spec(
       "ordinal_reg",
