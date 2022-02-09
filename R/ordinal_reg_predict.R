@@ -1,4 +1,6 @@
 
+#' @export
+#' @rdname predict
 get_prob_for_lambda <- function(x, object, lambda) {
   if(any(lambda  == object$fit$lambda)) {
     res <- tibble::as_tibble(x$probs[, , which(lambda  == object$fit$lambda)])

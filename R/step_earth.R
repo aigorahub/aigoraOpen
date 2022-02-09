@@ -33,7 +33,6 @@
 #' @importFrom recipes bake
 #' @importFrom recipes prep
 #'
-#' @examples
 step_earth <- function(recipe,
                        ...,
                        role = "predictor",
@@ -104,6 +103,8 @@ step_earth_new <-
     )
   }
 
+
+#' @importFrom recipes prep bake
 #' @export
 prep.step_earth <- function(x, training, info = NULL, ...) {
   load_pkgs(required_pkgs.step_earth())
@@ -186,6 +187,7 @@ print.step_earth <-
 #'
 #' @return A character vector
 #'
+#' @importFrom recipes required_pkgs
 #' @export
 required_pkgs.step_earth <- function(x, ...) {
   c("earth")
