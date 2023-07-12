@@ -109,8 +109,8 @@ step_earth_new <-
 prep.step_earth <- function(x, training, info = NULL, ...) {
   load_pkgs(required_pkgs.step_earth())
 
-  x_names <- recipes::recipes_eval_select(x$terms,   info = info)
-  y_names <- recipes::recipes_eval_select(x$outcome, info = info)
+  x_names <- recipes::recipes_eval_select(x$terms, training, info = info)
+  y_names <- recipes::recipes_eval_select(x$outcome, training, info = info)
   recipes::check_type(training[, x_names])
 
   earth_call <- rlang::expr(earth::earth())
