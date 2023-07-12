@@ -116,7 +116,7 @@ prep.step_earth <- function(x, training, info = NULL, ...) {
   earth_call <- rlang::expr(earth::earth())
 
   if (length(x$options) > 0)
-    earth_call <- recipes:::mod_call_args(earth_call, args = x$options)
+    earth_call <- rlang::call_modify(earth_call, !!!x$options)
 
   earth_call$x <- rlang::expr(training[, x_names, drop = FALSE])
   earth_call$y <- rlang::expr(training[, y_names, drop = FALSE])
